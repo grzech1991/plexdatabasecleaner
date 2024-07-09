@@ -19,7 +19,7 @@ for CURRENT_FILE in $FILES; do
     
     if [[ "$CURRENT_DATE" > "$PREVIOUS_DATE" ]]; then
       # Deleting the previous file because it is older
-      echo "Usuwanie $PREVIOUS_FILE"
+      echo "Deleting $PREVIOUS_FILE"
       rm "$PREVIOUS_FILE"
     fi
   fi
