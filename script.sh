@@ -1,24 +1,24 @@
 #!/bin/bash
 
-# Ścieżka do folderu z plikami
+# Path to plex database directory
 DIR="/volume1/homes/admin/PlexMediaServer/Backup"
 
-# Przejście do katalogu
+# Moving to the directory
 cd "$DIR" || exit
 
-# Pobranie listy plików i sortowanie
+# Downloading a list of files and sorting
 FILES=$(ls com.plexapp.plugins.library*.db-* | sort)
 
 PREVIOUS_FILE=""
 
 for CURRENT_FILE in $FILES; do
   if [[ -n $PREVIOUS_FILE ]]; then
-    # Sprawdzamy, czy data poprzedniego pliku jest starsza niż obecnego
+    # Checking whether the date of the previous file is older than the current one
     PREVIOUS_DATE=$(echo "$PREVIOUS_FILE" | grep -oP '\d{4}-\d{2}-\d{2}')
     CURRENT_DATE=$(echo "$CURRENT_FILE" | grep -oP '\d{4}-\d{2}-\d{2}')
     
     if [[ "$CURRENT_DATE" > "$PREVIOUS_DATE" ]]; then
-      # Usuwamy poprzedni plik, ponieważ jest starszy
+      # Deleting the previous file because it is older
       echo "Usuwanie $PREVIOUS_FILE"
       rm "$PREVIOUS_FILE"
     fi
