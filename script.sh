@@ -3,13 +3,12 @@
 # Ścieżka do folderu z plikami
 DIR="/volume1/homes/admin/PlexMediaServer/Backup"
 
-# Przechodzimy do katalogu
+# Przejście do katalogu
 cd "$DIR" || exit
 
-# Pobieramy listę plików i sortujemy je
+# Pobranie listy plików i sortowanie
 FILES=$(ls com.plexapp.plugins.library*.db-* | sort)
 
-# Przechowujemy poprzedni plik
 PREVIOUS_FILE=""
 
 for CURRENT_FILE in $FILES; do
